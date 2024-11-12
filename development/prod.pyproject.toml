@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "development"
+version = "0.1.0"
+description = ""
+authors = ["danielAdama <adamadaniel321@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.115.4"
+uvicorn = "^0.32.0"
+seaborn = "^0.13.2"
+gunicorn = "^23.0.0"
+pyyaml = "^6.0.2"
+pillow = "^11.0.0"
+python-multipart = "^0.0.17"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -22,19 +22,16 @@ logger = Logger(__name__)
 class ImageService:
     @staticmethod
     async def recognize(file: UploadFile):
-        # try:
-        file_bytes = await file.read()
-        # Decode the Base64 image string
-        # image_base64 = base64.b64encode(file_bytes).decode('utf-8')
-        # image_obj = Image.open(BytesIO(base64.b64decode(image_base64))).convert('RGB')
-        image_obj = Image.open(BytesIO(file_bytes)).convert('RGB')
+        try:
+            file_bytes = await file.read()
+            image_obj = Image.open(BytesIO(file_bytes)).convert('RGB')
 
-        classifier = ChessCategorizer()
-        result = classifier.classify(image_obj)
+            classifier = ChessCategorizer()
+            result = classifier.classify(image_obj)
 
-        logger.info("Image processed successfully")
-        # except Exception as ex:
-        #     logger.error(f"Processing Image -> API v1/image/classify/: {ex}")
-        #     raise InternalServerException()
+            logger.info("Image processed successfully")
+        except Exception as ex:
+            logger.error(f"Processing Image -> API v1/image/classify/: {ex}")
+            raise InternalServerException()
 
         return result

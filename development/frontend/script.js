@@ -1,44 +1,28 @@
-const apiUrl = "http://localhost:80/v1/chat/messages/";
+const apiUrl = "http://localhost:8001/v1/image/classify/";
 
-function displayMessage(message, role) {
-    const chatMessages = document.getElementById("chat-messages");
-    const messageDiv = document.createElement("div");
-    messageDiv.classList.add("message", role);
-    messageDiv.textContent = message;
-    chatMessages.appendChild(messageDiv);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-}
+document.getElementById('uploadForm').addEventListener('submit', async function (event) {
+    event.preventDefault();
 
-async function sendMessage() {
-    const inputElement = document.getElementById("chat-input");
-    const userMessage = inputElement.value;
+    const formData = new FormData(event.target);
+    const response = await fetch(apiUrl, {
+        method: 'POST',
+        body: formData
+    });
 
-    if (userMessage.trim() === "") return;
+    const result = await response.json();
 
-    displayMessage(userMessage, "user");
+    document.getElementById('prediction').textContent = result.data.prediction;
+    document.getElementById('probability').textContent = result.data.probability.toFixed(2);
+    document.getElementById('label').textContent = result.data.label;
+    document.getElementById('latency').textContent = result.data.latency.toFixed(4);
+    document.getElementById('throughput').textContent = result.data.throughput.toFixed(4);
 
-    try {
-        const response = await fetch(apiUrl, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                question: userMessage,
-                user_id: "adamadaniel321@gmail.com"
-            }),
-        });
-
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-
-        const result = await response.json();
-        const botMessage = result.data;
-        displayMessage(botMessage, "model");
-
-        inputElement.value = "";
-    } catch (error) {
-        console.error('Error:', error);
-    }
-}
+    // Display the uploaded image
+    const fileInput = document.getElementById('imageUpload');
+    const file = fileInput.files[0];
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        document.getElementById('uploadedImage').src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+});
