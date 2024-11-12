@@ -1,4 +1,4 @@
-from fastapi import APIRouter, status, Query, Depends, Path, Request
+from fastapi import APIRouter, status, Query, Depends, Path, Request, UploadFile, File
 import uuid
 from src.schemas import image_schema
 from src.services import image_service
@@ -13,7 +13,7 @@ image_router = APIRouter(prefix="/image", tags=["Image"])
         status_code=status.HTTP_201_CREATED
     )
 async def send_image(
-    image: image_schema.ImageIn
+    image: UploadFile = File(...)
     ):
     result = await image_service.ImageService.recognize(image)
     return ApiResponse(

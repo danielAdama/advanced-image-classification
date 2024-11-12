@@ -45,10 +45,10 @@ class ChessCategorizer(nn.Module):
         self.net = models.vgg16(weights=models.VGG16_Weights.IMAGENET1K_V1)
         self.net.classifier[6] = nn.Linear(in_features=self.in_features, out_features=self.num_labels)
         self.net.eval()
-        self.net.load_state_dict(torch.load(model_path, map_location=torch.device(device=self.device)))
+        self.net.load_state_dict(torch.load(model_path, map_location=torch.device(device=self.device), weights_only=True))
 
-        logger.info("Loaded dictionary: ", self.label_to_chess)
-        logger.info("Using: ", self.device)
+        logger.info(f"Loaded dictionary: {self.label_to_chess}")
+        logger.info(f"Using: {self.device}")
 
     def predict(self, model, input_tensor):
         """
@@ -68,9 +68,9 @@ class ChessCategorizer(nn.Module):
         outputs = torch.softmax(output, dim=1)
         preds = torch.argmax(outputs).item()
         probs = outputs[0, preds]
-        label = self.label_to_chess[preds]
+        label = self.label_to_chess[str(preds)]
 
-        return preds, probs, label
+        return preds, float(probs), label
 
     def classify(self, input_pil_image, image_size=224):
         """
@@ -99,4 +99,4 @@ class ChessCategorizer(nn.Module):
         logger.info(f"Latency: {latency:.4f} seconds")
         logger.info(f"Throughput: {throughput:.4f} predictions per second")
 
-        return preds, probs, label, latency, throughput
+        return {"prediction": preds, "probability":probs*100, "label":label, "latency":latency, "throughput":throughput}

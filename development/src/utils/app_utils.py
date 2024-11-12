@@ -27,4 +27,4 @@ class AppUtil:
     @staticmethod
     def load_file(path: pathlib.Path):
         with open(path, "r") as f:
-            return f.read()
+           return json.loads(f.read())
