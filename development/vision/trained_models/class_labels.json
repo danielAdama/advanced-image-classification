@@ -1,1 +1,8 @@
-{"0": "Bishop", "1": "Rook", "2": "Pawn", "3": "Knight", "4": "King", "5": "Queen"}
+{
+    "0": "Knight",
+    "1": "Bishop",
+    "2": "King",
+    "3": "Queen",
+    "4": "Rook",
+    "5": "Pawn"
+}
