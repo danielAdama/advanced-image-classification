@@ -6,7 +6,7 @@ from src.exceptions.custom_exception_handler import ExceptionHandlers, AppExcept
 from src.controllers.image import image_router
 
 
-app = FastAPI(title="Image Service Danny", version="0.0.1", root_path="/v1")
+app = FastAPI(title="Image Service", version="0.0.1", root_path="/v1")
 
 origin = ["*"]
 app.add_middleware(
@@ -26,6 +26,6 @@ app.add_exception_handler(AppException, ExceptionHandlers.handle_app_exception)
 
 @app.get("/")
 async def root():
-    return "Image Service Danny API is RUNNING!"
+    return "Image Service API is RUNNING!"
 
 app.include_router(image_router)
