@@ -8,6 +8,7 @@ __pycache__/
 
 **.env
 **.zip
+**.bin
 
 # Distribution / packaging
 .Python
