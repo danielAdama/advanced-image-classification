@@ -1,5 +1,16 @@
 # Chess Classification API
 
+Front End Interface
+<img width="1680" alt="Screenshot 2024-11-12 at 23 44 53" src="https://github.com/user-attachments/assets/ba7d0bcd-2eda-4791-8f74-a0852a1a186f">
+
+<img width="1680" alt="Screenshot 2024-11-12 at 23 44 25" src="https://github.com/user-attachments/assets/633219f2-c0c9-494d-881e-21f7bc0a7062">
+
+<img width="1680" alt="Screenshot 2024-11-12 at 23 44 05" src="https://github.com/user-attachments/assets/949779cc-2f33-4a99-9d32-572f956c7b3e">
+
+Backend Interface
+<img width="1680" alt="Screenshot 2024-11-12 at 23 45 29" src="https://github.com/user-attachments/assets/7d0b2039-8685-466e-97c8-7073eaf85eed">
+
+
 This repository hosts a custom-trained PyTorch model API for classifying chess images. The application uses FastAPI for backend services, NGINX for frontend delivery, and Docker for containerization.
 
 ## Project Structure
@@ -32,6 +43,14 @@ development/
 ├── Makefile                  # Task management
 └── README.md                 # Project documentation (this file)
 ```
+Technology Stack
+Backend:
+
+FastAPI: Backend framework for building APIs.
+Docker: Containerization for easy deployment.
+Pytorch: Deep Learning Model Development
+
+Frontend: HTML, CSS, JavaScript: Simple web-based frontend for chat interaction.
 
 ## Setup
 
