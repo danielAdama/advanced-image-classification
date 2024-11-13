@@ -64,7 +64,7 @@ Frontend: HTML, CSS, JavaScript: Simple web-based frontend for chat interaction.
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/danielAdama/advanced-image-classification.git
-   cd chess-classification
+   cd chess-classification/development
    ```
 
 2. **Set up Docker containers**  
