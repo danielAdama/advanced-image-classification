@@ -3,7 +3,7 @@
 
 compose_up:
 	@echo "Running docker compose..."
-	docker-compose up -d
+	docker-compose up 
 
 compose_down:
 	@echo "Shutting down docker compose..."

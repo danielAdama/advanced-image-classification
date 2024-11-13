@@ -17,6 +17,7 @@ gunicorn = "^23.0.0"
 pyyaml = "^6.0.2"
 pillow = "^11.0.0"
 python-multipart = "^0.0.17"
+jupyterlab = "^4.3.0"
 
 
 [build-system]
